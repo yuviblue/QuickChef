@@ -60,6 +60,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RequestHandler.cs" />
     <Compile Include="SearchAdapter.cs" />
     <Compile Include="ShortRecipe.cs" />
     <Compile Include="MainActivity.cs" />

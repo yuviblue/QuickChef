@@ -50,19 +50,17 @@ namespace QuickChef
         private void StartSearch()
         {
             string url = $"{baseUrl}{searchApi}?apiKey={apiKey}&ingredients=apples,+flour,+sugar&number={recipeCount}&includeInstructions=true";
-            var task = GetDataFromRequest(url);
-            task.Wait();
+            List<ShortRecipe> result = RequestHandler<List<ShortRecipe>>.GetDataFromRequest(url);
 
             List<Entry> recipes = new List<Entry>();
 
-            if (task.Result != null)
+            if (result != null)
             {
-                foreach (ShortRecipe v in task.Result)
+                foreach (ShortRecipe v in result)
                 {
                     var entry = new Entry()
                     {
-                        Picture = BitmapFactory.DecodeResource(Resources, Resource.Mipmap.ic_launcher),
-                        //Picture = GetImageBitmapFromUrl(v.image),
+                        Picture = GetImageBitmapFromUrl(v.image),
                         Title = v.title,
                         Id = v.id
                     };
@@ -81,38 +79,19 @@ namespace QuickChef
         {
             Bitmap imageBitmap = null;
 
-            //using (var webClient = new WebClient())
-            //{
-            //    var imageBytes = httpClient.GetAsync DownloadData(url);
-            //    if (imageBytes != null && imageBytes.Length > 0)
-            //    {
-            //        imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-            //    }
-            //}
+            using (var webClient = new System.Net.WebClient())
+            {
+                var imageBytes = webClient.DownloadData(url);
+                if (imageBytes != null && imageBytes.Length > 0)
+                {
+                    imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+                }
+            }
 
             return imageBitmap;
         }
 
-        private static async Task<List<ShortRecipe>> GetDataFromRequest(string url)
-        {
-            HttpClient httpClient;
-            List<ShortRecipe> result = null;            
 
-            using (httpClient = new HttpClient())
-            {
-                var response = await httpClient.GetAsync(url).ConfigureAwait(false);
-               
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = response.Content;
-
-                    string jsonString = await content.ReadAsStringAsync().ConfigureAwait(false);
-
-                    result = JsonConvert.DeserializeObject<List<ShortRecipe>>(jsonString);
-                }
-            }
-            return result;
-        }
 
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
