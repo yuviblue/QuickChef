@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using static Android.Content.ClipData;
 using Newtonsoft.Json;
 using ModernHttpClient;
+using Android.Graphics;
+using System;
 
 namespace QuickChef
 {
@@ -17,7 +19,10 @@ namespace QuickChef
     {
         EditText et1, et2;
         Button btn;
-        HttpClient httpClient;
+        
+        
+        ListView lv;
+        SearchAdapter searchAdapter;
         private const string apiKey = "158e67089b3f42e3b3d6a3cb512213b7";
         private const string baseUrl = "https://api.spoonacular.com/recipes/";
         private const string searchApi = "findByIngredients";
@@ -33,44 +38,79 @@ namespace QuickChef
             et1 = FindViewById<EditText>(Resource.Id.editText1);
             et2 = FindViewById<EditText>(Resource.Id.editText2);
             btn = FindViewById<Button>(Resource.Id.button1);
-            httpClient = new HttpClient();
-
+            
             btn.Click += Btn_Click;
         }
 
         private void Btn_Click(object sender, System.EventArgs e)
         {
-
-            var task = GetDataFromRequest();
-            task.Wait();
-
-            if(task.Result != null)
-            {
-                foreach(var v in task.Result)
-                {
-                    // TODO: add recipe to view
-                }
-            }
-
-
+            StartSearch();
         }
 
-        private async Task<List<ShortRecipe>> GetDataFromRequest()
+        private void StartSearch()
         {
             string url = $"{baseUrl}{searchApi}?apiKey={apiKey}&ingredients=apples,+flour,+sugar&number={recipeCount}&includeInstructions=true";
-            var response = await httpClient.GetAsync(url).ConfigureAwait(false);
+            var task = GetDataFromRequest(url);
+            task.Wait();
 
-            List<ShortRecipe> result = null; ;
+            List<Entry> recipes = new List<Entry>();
 
-            if (response.IsSuccessStatusCode)
+            if (task.Result != null)
             {
-                var content = response.Content;
+                foreach (ShortRecipe v in task.Result)
+                {
+                    var entry = new Entry()
+                    {
+                        Picture = BitmapFactory.DecodeResource(Resources, Resource.Mipmap.ic_launcher),
+                        //Picture = GetImageBitmapFromUrl(v.image),
+                        Title = v.title,
+                        Id = v.id
+                    };
 
-                string jsonString = await content.ReadAsStringAsync().ConfigureAwait(false);
+                    recipes.Add(entry);
+                }
 
-                result = JsonConvert.DeserializeObject<List<ShortRecipe>>(jsonString);
+                var adapter = new SearchAdapter(this, recipes);
+                lv = FindViewById<ListView>(Resource.Id.lv);
+                lv.Adapter = adapter;
+
             }
+        }
 
+        private Bitmap GetImageBitmapFromUrl(string url)
+        {
+            Bitmap imageBitmap = null;
+
+            //using (var webClient = new WebClient())
+            //{
+            //    var imageBytes = httpClient.GetAsync DownloadData(url);
+            //    if (imageBytes != null && imageBytes.Length > 0)
+            //    {
+            //        imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+            //    }
+            //}
+
+            return imageBitmap;
+        }
+
+        private static async Task<List<ShortRecipe>> GetDataFromRequest(string url)
+        {
+            HttpClient httpClient;
+            List<ShortRecipe> result = null;            
+
+            using (httpClient = new HttpClient())
+            {
+                var response = await httpClient.GetAsync(url).ConfigureAwait(false);
+               
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = response.Content;
+
+                    string jsonString = await content.ReadAsStringAsync().ConfigureAwait(false);
+
+                    result = JsonConvert.DeserializeObject<List<ShortRecipe>>(jsonString);
+                }
+            }
             return result;
         }
 
