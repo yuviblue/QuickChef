@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RequestHandler.cs" />
+    <Compile Include="SearchActivity.cs" />
     <Compile Include="SearchAdapter.cs" />
     <Compile Include="ShortRecipe.cs" />
     <Compile Include="MainActivity.cs" />
@@ -101,7 +102,7 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\drawable\" />
+    <AndroidResource Include="Resources\drawable\orange_circle.xml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="modernhttpclient">
@@ -120,6 +121,19 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\cell_layout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\dialog_search_layout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\orange_button.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\search_layout.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

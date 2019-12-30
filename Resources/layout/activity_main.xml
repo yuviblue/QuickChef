@@ -6,35 +6,33 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 >
-    <EditText
-        android:layout_width="250dp"
-        android:layout_height="70dp"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:textSize="30sp"
-        android:id="@+id/editText1"
-    />
-    <EditText
-        android:layout_width="250dp"
-        android:layout_height="70dp"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:textSize="30sp"
-        android:layout_marginTop="30dp"
-        android:id="@+id/editText2"
-    />
     <Button
-        android:layout_width="250dp"
+        android:layout_width="70dp"
         android:layout_height="70dp"
         android:gravity="center"
         android:layout_gravity="center"
         android:textSize="30sp"
+        android:text="+"
+        android:textColor="#fff"
         android:layout_marginTop="30dp"
-        android:id="@+id/button1"
+        android:id="@+id/btnAdd"
+        android:background="@drawable/orange_circle"
     />
     <ListView
 		android:layout_height = "wrap_content"
 		android:layout_width = "match_parent"
 		android:id = "@+id/lv"
 	/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:text="What's cookin'?"
+        android:textColor="#fff"
+        android:layout_marginTop="30dp"
+        android:id="@+id/btnSearch"
+        android:background="@drawable/orange_button"
+        android:layout_gravity="center"
+    />
 </LinearLayout>
