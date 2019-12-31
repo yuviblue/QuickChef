@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using ModernHttpClient;
 using Android.Graphics;
 using System;
+using Android.Content;
 
 namespace QuickChef
 {
@@ -22,6 +23,7 @@ namespace QuickChef
         Button btnSearch;
         Button btnAdd;  
         ListView lvIngridients;
+        List<string> ingridientsList;
         Dialog d;
         
         protected override void OnCreate(Bundle savedInstanceState)
@@ -33,9 +35,20 @@ namespace QuickChef
 
             btnSearch = FindViewById<Button>(Resource.Id.btnSearch);
             btnAdd = FindViewById<Button>(Resource.Id.btnAdd);
+            ingridientsList = new List<string>();
 
             btnSearch.Click += BtnSearch_Click;
             btnAdd.Click += BtnAdd_Click;
+
+        }
+
+        private void BtnConfirm_Click(object sender, EventArgs e)
+        {
+            ingridientsList.Add(etSearch.Text);
+            var adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, ingridientsList);
+            lvIngridients = FindViewById<ListView>(Resource.Id.lv);
+            lvIngridients.Adapter = adapter;
+            d.Cancel();
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
@@ -51,13 +64,17 @@ namespace QuickChef
             d.SetCancelable(true);
             etSearch = d.FindViewById<EditText>(Resource.Id.etSearch);
             btnConfirm = d.FindViewById<Button>(Resource.Id.btnConfirm);
+            btnConfirm.Click += BtnConfirm_Click;
+
             d.Show();
         }
 
-        private void BtnSearch_Click(object sender, System.EventArgs e)
+        private void BtnSearch_Click(object sender, EventArgs e)
         {
-            //StartSearch();
-        }
+            Intent intent = new Intent(this, typeof(SearchActivity));
+            intent.PutStringArrayListExtra("Ingridients", ingridientsList);
+            StartActivity(intent);
+        } 
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

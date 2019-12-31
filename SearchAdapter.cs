@@ -63,7 +63,7 @@ namespace QuickChef
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            var layoutInflater = ((MainActivity)context).LayoutInflater;
+            var layoutInflater = ((SearchActivity)context).LayoutInflater;
             var view = layoutInflater.Inflate(Resource.Layout.cell_layout, parent, false);
             var tvTitle = view.FindViewById<TextView>(Resource.Id.tvTitle);
             var ivPicture = view.FindViewById<ImageView>(Resource.Id.ivPicture);
