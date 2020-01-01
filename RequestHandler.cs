@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using System.Net.Http;
 using Newtonsoft.Json;
+using Android.Graphics;
 
 namespace QuickChef
 {
@@ -43,6 +44,22 @@ namespace QuickChef
                 }
             }
             return result;
+        }
+
+        public static Bitmap GetImageBitmapFromUrl(string url)
+        {
+            Bitmap imageBitmap = null;
+
+            using (var webClient = new System.Net.WebClient())
+            {
+                var imageBytes = webClient.DownloadData(url);
+                if (imageBytes != null && imageBytes.Length > 0)
+                {
+                    imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+                }
+            }
+
+            return imageBitmap;
         }
     }
 }

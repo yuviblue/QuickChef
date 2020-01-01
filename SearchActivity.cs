@@ -5,7 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
-using Android.Graphics;
+
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -21,6 +21,7 @@ namespace QuickChef
         private const string baseUrl = "https://api.spoonacular.com/recipes/";
         private const string searchApi = "findByIngredients";
         private const int recipeCount = 8;
+        private List<Entry> recipes;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -35,7 +36,7 @@ namespace QuickChef
 
         private string GetSearchUrl(IList<string> ingridients)
         {
-            string url = $"{baseUrl}{searchApi}?apiKey={apiKey}&ingredients="; // apples,+flour,+sugar&number={recipeCount}&includeInstructions=true";
+            string url = $"{baseUrl}{searchApi}?apiKey={apiKey}&ingredients="; 
 
             if (!ingridients.Any())
             {
@@ -56,7 +57,7 @@ namespace QuickChef
         {            
             List<ShortRecipe> result = RequestHandler<List<ShortRecipe>>.GetDataFromRequest(url);
 
-            List<Entry> recipes = new List<Entry>();
+            recipes = new List<Entry>();
 
             if (result != null)
             {
@@ -64,7 +65,7 @@ namespace QuickChef
                 {
                     var entry = new Entry()
                     {
-                        Picture = GetImageBitmapFromUrl(v.image),
+                        Picture = RequestHandler<Entry>.GetImageBitmapFromUrl(v.image),
                         Title = v.title,
                         Id = v.id
                     };
@@ -82,23 +83,11 @@ namespace QuickChef
 
         private void LvRecipes_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            //throw new NotImplementedException();
-        }
+            Intent intent = new Intent(this, typeof(Recipe));
+            intent.PutExtra("recipe", recipes[(int)e.Id].Id);
+            StartActivity(intent);
+        } 
 
-        private Bitmap GetImageBitmapFromUrl(string url)
-        {
-            Bitmap imageBitmap = null;
 
-            using (var webClient = new System.Net.WebClient())
-            {
-                var imageBytes = webClient.DownloadData(url);
-                if (imageBytes != null && imageBytes.Length > 0)
-                {
-                    imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-                }
-            }
-
-            return imageBitmap;
-        }
     }
 }
