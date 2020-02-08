@@ -1,38 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
 >
-    <Button
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:textSize="30sp"
-        android:text="+"
-        android:textColor="#fff"
-        android:layout_marginTop="30dp"
-        android:id="@+id/btnAdd"
-        android:background="@drawable/orange_circle"
-    />
-    <ListView
-		android:layout_height = "wrap_content"
-		android:layout_width = "match_parent"
-		android:id = "@+id/lv"
-	/>
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:gravity="center"
-        android:textSize="30sp"
-        android:text="What's cookin'?"
-        android:textColor="#fff"
-        android:layout_marginTop="30dp"
-        android:id="@+id/btnSearch"
-        android:background="@drawable/orange_button"
-        android:layout_gravity="center"
-    />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+    >
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="30sp"
+            android:text="+"
+            android:textColor="#fff"
+            android:id="@+id/btnAdd"
+            android:background="@drawable/orange_circle"
+        />
+    </LinearLayout>
+    <ListView
+        android:layout_height = "wrap_content"
+        android:layout_width = "match_parent"
+        android:id = "@+id/lv"
+        android:layout_weight="5"
+	/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+    >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:text="What's cookin'?"
+            android:textColor="#fff"
+            android:id="@+id/btnSearch"
+            android:background="#ff9029"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+        />
+    </LinearLayout>
 </LinearLayout>

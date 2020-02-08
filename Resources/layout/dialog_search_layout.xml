@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog_bg"
+>
 
     <EditText
         android:layout_width="250dp"
@@ -22,7 +24,7 @@
         android:id="@+id/btnConfirm"
         android:text="Confirm"
         android:textColor="#fff"
-        android:background="@drawable/orange_button"
+        android:background="#ff9029"
     />
 
 </LinearLayout>

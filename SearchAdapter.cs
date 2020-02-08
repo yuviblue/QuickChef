@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using QuickChef.Model;
 
 namespace QuickChef
 {
@@ -67,7 +68,7 @@ namespace QuickChef
             var view = layoutInflater.Inflate(Resource.Layout.cell_layout, parent, false);
             var tvTitle = view.FindViewById<TextView>(Resource.Id.tvTitle);
             var ivPicture = view.FindViewById<ImageView>(Resource.Id.ivPicture);
-            Entry temp = results[position];
+            var temp = results[position];
 
             if (temp != null)
             {
