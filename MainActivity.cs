@@ -18,15 +18,17 @@ namespace QuickChef
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     { 
-        EditText etSearch;
-        Button btnConfirm;
-        Button btnSearch;
-        Button btnAdd;  
-        ListView lvIngridients;
-        List<string> ingridientsList;
-        Dialog d;
+        private EditText etSearch;
+        private int currentIndex = -1;
+        private Button btnConfirm;
+        private Button btnSearch;
+        private Button btnAdd;  
+        private ListView lvIngredients;
+        private List<string> ingredientsList;
+        private Dialog ingredientsDialog;
         private static ProgressDialog progressDialog;
-        
+        private ArrayAdapter Adapter;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -39,45 +41,87 @@ namespace QuickChef
 
             btnSearch = FindViewById<Button>(Resource.Id.btnSearch);
             btnAdd = FindViewById<Button>(Resource.Id.btnAdd);
-            ingridientsList = new List<string>();
+            ingredientsList = new List<string>();
+            lvIngredients = FindViewById<ListView>(Resource.Id.lv);
+            Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, ingredientsList);
+            lvIngredients.Adapter = Adapter;
 
             btnSearch.Click += BtnSearch_Click;
             btnAdd.Click += BtnAdd_Click;
+            lvIngredients.ItemClick += LvIngridients_ItemClick;
+            lvIngredients.ItemLongClick += LvIngredients_ItemLongClick;
 
+        }
+
+        private void LvIngredients_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
+        {
+            ingredientsList.Remove(ingredientsList[e.Position]);
+            lvIngredients.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, ingredientsList);
+        }
+
+        private void LvIngridients_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            UpdateIngridientDialog(e.Position);
+            lvIngredients.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, ingredientsList);
         }
 
         private void BtnConfirm_Click(object sender, EventArgs e)
         {
-            ingridientsList.Add(etSearch.Text);
-            var adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, ingridientsList);
-            lvIngridients = FindViewById<ListView>(Resource.Id.lv);
-            lvIngridients.Adapter = adapter;
-            d.Cancel();
+            if (string.IsNullOrEmpty(etSearch.Text))
+                return;
+            ingredientsList.Add(etSearch.Text);
+            lvIngredients.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, ingredientsList);
+            ingredientsDialog.Cancel();
+        }
+
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(etSearch.Text))
+                return;
+            ingredientsList[currentIndex] = etSearch.Text;
+            lvIngredients.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, ingredientsList);
+            ingredientsDialog.Cancel();
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             AddIngridientDialog();
+            lvIngredients.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, ingredientsList);
         }
 
         private void AddIngridientDialog()
         {
-            d = new Dialog(this);
-            d.SetContentView(Resource.Layout.dialog_search_layout);
-            d.SetTitle("Ingridient");
-            d.SetCancelable(true);
-            etSearch = d.FindViewById<EditText>(Resource.Id.etSearch);
-            btnConfirm = d.FindViewById<Button>(Resource.Id.btnConfirm);
+            ingredientsDialog = new Dialog(this);
+            ingredientsDialog.SetContentView(Resource.Layout.dialog_search_layout);
+            ingredientsDialog.SetTitle("Ingridient");
+            ingredientsDialog.SetCancelable(true);
+            etSearch = ingredientsDialog.FindViewById<EditText>(Resource.Id.etSearch);
+            btnConfirm = ingredientsDialog.FindViewById<Button>(Resource.Id.btnConfirm);
             btnConfirm.Click += BtnConfirm_Click;
 
-            d.Show();
+            ingredientsDialog.Show();
+        }
+
+        private void UpdateIngridientDialog(int index)
+        {
+            ingredientsDialog = new Dialog(this);
+            ingredientsDialog.SetContentView(Resource.Layout.dialog_search_layout);
+            ingredientsDialog.SetTitle("Ingridient");
+            ingredientsDialog.SetCancelable(true);
+            etSearch = ingredientsDialog.FindViewById<EditText>(Resource.Id.etSearch);
+            btnConfirm = ingredientsDialog.FindViewById<Button>(Resource.Id.btnConfirm);
+            btnConfirm.Click += BtnUpdate_Click;
+            etSearch.Text = ingredientsList[index];
+            currentIndex = index;
+
+            ingredientsDialog.Show();
         }
 
         private void BtnSearch_Click(object sender, EventArgs e)
         {
             progressDialog.Show();
             Intent intent = new Intent(this, typeof(SearchActivity));
-            intent.PutStringArrayListExtra("Ingridients", ingridientsList);
+            intent.PutStringArrayListExtra("Ingridients", ingredientsList);
             StartActivity(intent);
         } 
 
