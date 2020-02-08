@@ -79,6 +79,8 @@ namespace QuickChef
                 lvRecipes.ItemClick += LvRecipes_ItemClick;
 
             }
+
+            MainActivity.HideProgressDialog();
         }
 
         private void LvRecipes_ItemClick(object sender, AdapterView.ItemClickEventArgs e)

@@ -25,6 +25,7 @@ namespace QuickChef
         ListView lvIngridients;
         List<string> ingridientsList;
         Dialog d;
+        private static ProgressDialog progressDialog;
         
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -32,6 +33,9 @@ namespace QuickChef
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
+
+            progressDialog = new ProgressDialog(this);
+            progressDialog.SetMessage("Loading, Please Wait");
 
             btnSearch = FindViewById<Button>(Resource.Id.btnSearch);
             btnAdd = FindViewById<Button>(Resource.Id.btnAdd);
@@ -71,10 +75,16 @@ namespace QuickChef
 
         private void BtnSearch_Click(object sender, EventArgs e)
         {
+            progressDialog.Show();
             Intent intent = new Intent(this, typeof(SearchActivity));
             intent.PutStringArrayListExtra("Ingridients", ingridientsList);
             StartActivity(intent);
         } 
+
+        public static void HideProgressDialog()
+        {
+            progressDialog.Hide();
+        }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
