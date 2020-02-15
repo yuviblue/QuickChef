@@ -1,14 +1,10 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 
 namespace QuickChef
@@ -29,9 +25,26 @@ namespace QuickChef
 
             // Create your application here
             SetContentView(Resource.Layout.search_layout);
+            try
+            {
+                var ingridients = Intent.GetStringArrayListExtra("Ingridients");
+                StartSearch(GetSearchUrl(ingridients));
+            }
+            catch (Exception)
+            {
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.SetTitle("Connetction Error");
+                alert.SetMessage("Check your conection");
+                alert.SetPositiveButton("OK", HandlePositiveButtonClick);
+                alert.SetCancelable(false);
+                alert.Show();
+            }
+        }
 
-            var ingridients = Intent.GetStringArrayListExtra("Ingridients");
-            StartSearch(GetSearchUrl(ingridients));
+        private void HandlePositiveButtonClick(object sender, DialogClickEventArgs e)
+        {
+            MainActivity.HideProgressDialog();
+            OnBackPressed();
         }
 
         private string GetSearchUrl(IList<string> ingridients)
