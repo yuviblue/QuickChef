@@ -15,7 +15,7 @@ using Android.Content;
 
 namespace QuickChef
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     { 
         private EditText etSearch;

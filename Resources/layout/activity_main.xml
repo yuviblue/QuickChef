@@ -23,6 +23,7 @@
             android:textColor="#fff"
             android:id="@+id/btnAdd"
             android:background="@drawable/orange_circle"
+            android:layout_marginTop="20dp"
         />
     </LinearLayout>
     <ListView

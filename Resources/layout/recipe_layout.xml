@@ -13,13 +13,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="#ff000000"
+            android:background="#fff"
+            android:padding="15dp"
         >
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvRecipeTitle"
-                android:textColor="#32a852"
+                android:textColor="#000"
             />
 
             <ImageView
@@ -32,14 +33,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvIngridients"
-                android:textColor="#32a852"
+                android:textColor="#000"
             />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvInsrtuctions"
-                android:textColor="#32a852"
+                android:textColor="#000"
             />
         </LinearLayout>
     </ScrollView>

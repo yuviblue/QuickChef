@@ -69,6 +69,7 @@
     <Compile Include="Model\Measures.cs" />
     <Compile Include="Model\Metric.cs" />
     <Compile Include="Model\Us.cs" />
+    <Compile Include="NetworkChangeReceiver.cs" />
     <Compile Include="Recipe.cs" />
     <Compile Include="RequestHandler.cs" />
     <Compile Include="SearchActivity.cs" />
