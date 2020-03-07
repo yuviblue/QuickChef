@@ -8,6 +8,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="5"
     >
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,4 +45,22 @@
             />
         </LinearLayout>
     </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+    >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:text="Download"
+            android:textColor="#fff"
+            android:id="@+id/btnSearch"
+            android:background="#ff9029"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+        />
+    </LinearLayout>
 </LinearLayout>
