@@ -36,32 +36,6 @@ namespace QuickChef
             return position;
         }
 
-        //public override View GetView(int position, View convertView, ViewGroup parent)
-        //{
-        //    var view = convertView;
-        //    SearchAdapterViewHolder holder = null;
-
-        //    if (view != null)
-        //        holder = view.Tag as SearchAdapterViewHolder;
-
-        //    if (holder == null)
-        //    {
-        //        holder = new SearchAdapterViewHolder();
-        //        var inflater = context.GetSystemService(Context.LayoutInflaterService).JavaCast<LayoutInflater>();
-        //        //replace with your item and your holder items
-        //        //comment back in
-        //        //view = inflater.Inflate(Resource.Layout.item, parent, false);
-        //        //holder.Title = view.FindViewById<TextView>(Resource.Id.text);
-        //        view.Tag = holder;
-        //    }
-
-
-        //    //fill in your items
-        //    //holder.Title.Text = "new text here";
-
-        //    return view;
-        //}
-
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             var layoutInflater = ((SearchActivity)context).LayoutInflater;
@@ -79,7 +53,6 @@ namespace QuickChef
             return view;
         }
 
-        //Fill in cound here, currently 0
         public override int Count
         {
             get

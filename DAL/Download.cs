@@ -8,8 +8,10 @@ using Android.Content;
 using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Java.IO;
 using SQLite;
 
 namespace QuickChef.DAL
@@ -19,16 +21,21 @@ namespace QuickChef.DAL
     {
         [PrimaryKey, AutoIncrement, Column("id")]
         public int Id { get; }
-        public string Title { get; }
-        public string Recipe { get; }
-        public Bitmap Image { get; }
-        public DateTime Date { get; }
+        public string Title { get; set; }
+        public string Recipe { get; set; }
+        public string Image { get; set; }
+        public DateTime Date { get; set; }
+
+        public Download()
+        {
+                
+        }
 
         public Download(string title, string recipe, Bitmap image)
         {
             Title = title;
             Recipe = recipe;
-            Image = image;
+            SetImage( image );
             Date = DateTime.Now;
         }
 
@@ -36,6 +43,34 @@ namespace QuickChef.DAL
         {
             var db = DB.GetDbConnction();
             db.Insert(this);
+        }
+
+        public static List<Download> Get()
+        {
+            var db = DB.GetDbConnction();
+            return db.Query<Download>("SELECT * FROM Downloads");
+        }
+        
+        public void SetImage(Bitmap bitmap)
+        {
+            var byteArrayOutputStream = new System.IO.MemoryStream();
+            bitmap.Compress(Bitmap.CompressFormat.Png, 100, byteArrayOutputStream);
+            byte[] bitmapData = byteArrayOutputStream.ToArray();
+            Image = Base64.EncodeToString(bitmapData, Base64Flags.Default);
+        }
+
+        public Bitmap GetImage()
+        {
+            Bitmap img = null;
+
+            if (Image != null)
+            {
+                byte[] decodedByte = Base64.Decode(Image, 0);
+                img = BitmapFactory.DecodeByteArray(decodedByte, 0, decodedByte.Length);
+
+            }
+
+            return img;
         }
 
         

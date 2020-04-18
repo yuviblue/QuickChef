@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
+using Android.Graphics;
+using Android.Graphics.Drawables;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
+using QuickChef.DAL;
 using QuickChef.Model;
 
 namespace QuickChef
@@ -16,6 +13,8 @@ namespace QuickChef
     [Activity(Label = "Recipe")]
     public class Recipe : Activity
     {
+        private RecipeModel rm = null;
+        ImageView image;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -25,12 +24,15 @@ namespace QuickChef
 
             int recipeId = Intent.GetIntExtra("recipe", -1);
 
-            RecipeModel rm = RequestHandler<RecipeModel>.GetDataFromRequest(CreateRecipeUrl(recipeId));
+            rm = RequestHandler<RecipeModel>.GetDataFromRequest(CreateRecipeUrl(recipeId));
 
             var title = FindViewById<TextView>(Resource.Id.tvRecipeTitle);
-            var image = FindViewById<ImageView>(Resource.Id.ivRecipeImage);
+            image = FindViewById<ImageView>(Resource.Id.ivRecipeImage);
             var instructions = FindViewById<TextView>(Resource.Id.tvInsrtuctions);
             var ingredients = FindViewById<TextView>(Resource.Id.tvIngridients);
+            var btnDownload = FindViewById<Button>(Resource.Id.btnDownload);
+
+            btnDownload.Click += BtnDownload_Click;
 
             title.Text = rm.title;
             image.SetImageBitmap(RequestHandler<Entry>.GetImageBitmapFromUrl(rm.image));
@@ -44,6 +46,13 @@ namespace QuickChef
                 ingredients.Text += $"{i}. {ingredient.amount} {ingredient.unit} of {ingredient.name}\n";
             }
 
+        }
+
+        private void BtnDownload_Click(object sender, EventArgs e)
+        {
+            Bitmap bm = ((BitmapDrawable)image.Drawable).Bitmap;
+            var download = new Download(rm.title, "", bm);
+            download.Insert();
         }
 
         private string CreateRecipeUrl(int recipeId)

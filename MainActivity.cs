@@ -12,10 +12,11 @@ using ModernHttpClient;
 using Android.Graphics;
 using System;
 using Android.Content;
+using Android.Views;
 
 namespace QuickChef
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     { 
         private EditText etSearch;
@@ -28,6 +29,8 @@ namespace QuickChef
         private Dialog ingredientsDialog;
         private static ProgressDialog progressDialog;
         private ArrayAdapter Adapter;
+        private NetworkChangeReceiver networkReceiver;
+        private Button btnPlaceholder;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -39,6 +42,8 @@ namespace QuickChef
             progressDialog = new ProgressDialog(this);
             progressDialog.SetMessage("Loading, Please Wait");
 
+            btnPlaceholder = FindViewById<Button>(Resource.Id.btnPlaceholder);
+
             btnSearch = FindViewById<Button>(Resource.Id.btnSearch);
             btnAdd = FindViewById<Button>(Resource.Id.btnAdd);
             ingredientsList = new List<string>();
@@ -46,11 +51,27 @@ namespace QuickChef
             Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, ingredientsList);
             lvIngredients.Adapter = Adapter;
 
+            networkReceiver = new NetworkChangeReceiver();
+
             btnSearch.Click += BtnSearch_Click;
             btnAdd.Click += BtnAdd_Click;
             lvIngredients.ItemClick += LvIngridients_ItemClick;
             lvIngredients.ItemLongClick += LvIngredients_ItemLongClick;
 
+            btnPlaceholder.Click += BtnPlaceholder_Click;
+
+        }
+
+        private void BtnPlaceholder_Click(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(DownloadsActivity));
+            StartActivity(intent);
+        }
+
+        protected override void OnPostResume()
+        {
+            base.OnResume();
+            RegisterReceiver(networkReceiver, new IntentFilter("android:name='android.net.conn.CONNECTIVITY_CHANGE'"));
         }
 
         private void LvIngredients_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
@@ -128,6 +149,11 @@ namespace QuickChef
         public static void HideProgressDialog()
         {
             progressDialog.Hide();
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            return base.OnCreateOptionsMenu(menu);
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

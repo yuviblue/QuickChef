@@ -25,7 +25,7 @@ namespace QuickChef.DAL
             db = new SQLiteConnection(dbPath);
             if (!dbExists)
             {
-                db.CreateTable(typeof(Download));
+                db.CreateTable<Download>();
             }
             return db;
         }

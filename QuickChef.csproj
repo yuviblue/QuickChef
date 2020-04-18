@@ -60,8 +60,10 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CookbookAdapter.cs" />
     <Compile Include="DAL\DB.cs" />
     <Compile Include="DAL\Download.cs" />
+    <Compile Include="DownloadsActivity.cs" />
     <Compile Include="Model\AnalyzedInstruction.cs" />
     <Compile Include="Model\Length.cs" />
     <Compile Include="Model\RecipeModel.cs" />
@@ -160,6 +162,14 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\dialog_bg.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\options_menu.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\downloads_layout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
