@@ -14,7 +14,7 @@ namespace QuickChef.Model
 {
     public class ExtendedIngredient
     {
-        public int id { get; set; }
+        public int? id { get; set; }
         public string aisle { get; set; }
         public string image { get; set; }
         public string consitency { get; set; }

@@ -51,8 +51,9 @@ namespace QuickChef
         private void BtnDownload_Click(object sender, EventArgs e)
         {
             Bitmap bm = ((BitmapDrawable)image.Drawable).Bitmap;
-            var download = new Download(rm.title, "", bm);
+            var download = new Download(rm.id, rm.title, rm.instructions, bm);
             download.Insert();
+            Toast.MakeText(this, " Recipe saved to cookbook", ToastLength.Long).Show();
         }
 
         private string CreateRecipeUrl(int recipeId)

@@ -43,6 +43,16 @@ namespace QuickChef
             var adapter = new CookbookAdapter(this, entryList);
             lvCookbook = FindViewById<ListView>(Resource.Id.lvCookbook);
             lvCookbook.Adapter = adapter;
+
+            lvCookbook.ItemClick += LvCookbook_ItemClick;
+        }
+
+        private void LvCookbook_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(SavedRecipeActivity));
+            intent.PutExtra("position",e.Position);
+            StartActivity(intent);
+
         }
     }
 }

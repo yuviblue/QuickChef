@@ -21,6 +21,7 @@ namespace QuickChef.DAL
     {
         [PrimaryKey, AutoIncrement, Column("id")]
         public int Id { get; }
+        public int TrueId { get; set; }
         public string Title { get; set; }
         public string Recipe { get; set; }
         public string Image { get; set; }
@@ -31,8 +32,9 @@ namespace QuickChef.DAL
                 
         }
 
-        public Download(string title, string recipe, Bitmap image)
+        public Download(int id, string title, string recipe, Bitmap image)
         {
+            TrueId = id;
             Title = title;
             Recipe = recipe;
             SetImage( image );

@@ -76,6 +76,7 @@
     <Compile Include="NetworkChangeReceiver.cs" />
     <Compile Include="Recipe.cs" />
     <Compile Include="RequestHandler.cs" />
+    <Compile Include="SavedRecipeActivity.cs" />
     <Compile Include="SearchActivity.cs" />
     <Compile Include="SearchAdapter.cs" />
     <Compile Include="Model\ShortRecipe.cs" />
