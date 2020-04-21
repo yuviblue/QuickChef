@@ -30,7 +30,6 @@ namespace QuickChef
         private static ProgressDialog progressDialog;
         private ArrayAdapter Adapter;
         private NetworkChangeReceiver networkReceiver;
-        private Button btnPlaceholder;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -41,8 +40,6 @@ namespace QuickChef
 
             progressDialog = new ProgressDialog(this);
             progressDialog.SetMessage("Loading, Please Wait");
-
-            btnPlaceholder = FindViewById<Button>(Resource.Id.btnPlaceholder);
 
             btnSearch = FindViewById<Button>(Resource.Id.btnSearch);
             btnAdd = FindViewById<Button>(Resource.Id.btnAdd);
@@ -58,14 +55,6 @@ namespace QuickChef
             lvIngredients.ItemClick += LvIngridients_ItemClick;
             lvIngredients.ItemLongClick += LvIngredients_ItemLongClick;
 
-            btnPlaceholder.Click += BtnPlaceholder_Click;
-
-        }
-
-        private void BtnPlaceholder_Click(object sender, EventArgs e)
-        {
-            Intent intent = new Intent(this, typeof(DownloadsActivity));
-            StartActivity(intent);
         }
 
         protected override void OnPostResume()
@@ -153,7 +142,20 @@ namespace QuickChef
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            return base.OnCreateOptionsMenu(menu);
+            MenuInflater.Inflate(Resource.Menu.options_menu, menu);
+            return true;
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            base.OnOptionsItemSelected(item);
+            if (item.ItemId == Resource.Id.myCookbook)
+            {
+                Intent intent = new Intent(this, typeof(DownloadsActivity));
+                StartActivity(intent);
+                return true;
+            }
+            return true;
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

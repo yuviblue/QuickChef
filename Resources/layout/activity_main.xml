@@ -14,17 +14,6 @@
         android:orientation="vertical"
     >
         <Button
-            android:layout_width="150dp"
-            android:layout_height="70dp"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:text="Downloads"
-            android:textSize="20sp"
-            android:background="@drawable/orange_button"
-            android:textColor="#fff"
-            android:id="@+id/btnPlaceholder"
-        />
-        <Button
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:gravity="center"

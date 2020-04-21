@@ -29,5 +29,17 @@ namespace QuickChef.DAL
             }
             return db;
         }
+
+        public bool IsNotSaved(int id)
+        {
+            foreach (var item in Download.Get())
+            {
+                if (id == item.TrueId)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }
