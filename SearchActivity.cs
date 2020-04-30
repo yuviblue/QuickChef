@@ -5,12 +5,14 @@ using Android.App;
 using Android.Content;
 
 using Android.OS;
+using Android.Support.V7.App;
 using Android.Widget;
+using AlertDialog = Android.App.AlertDialog;
 
 namespace QuickChef
 {
-    [Activity(Label = "SearchActivity")]
-    public class SearchActivity : Activity
+    [Activity(Label = "Matching Recipes")]
+    public class SearchActivity : AppCompatActivity
     {
         ListView lvRecipes;
         private const string apiKey = "158e67089b3f42e3b3d6a3cb512213b7";
@@ -25,6 +27,10 @@ namespace QuickChef
 
             // Create your application here
             SetContentView(Resource.Layout.search_layout);
+
+            Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+
             try
             {
                 var ingridients = Intent.GetStringArrayListExtra("Ingridients");

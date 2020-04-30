@@ -4,14 +4,15 @@ using Android.Content;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
+using Android.Support.V7.App;
 using Android.Widget;
 using QuickChef.DAL;
 using QuickChef.Model;
 
 namespace QuickChef
 {
-    [Activity(Label = "Recipe", Theme = "@style/AppTheme")]
-    public class Recipe : Activity
+    [Activity(Label = "Recipe", Theme = "@style/AppTheme.NoActionBar")]
+    public class Recipe : AppCompatActivity
     {
         private RecipeModel rm = null;
         ImageView image;
@@ -21,6 +22,9 @@ namespace QuickChef
 
             // Create your application here
             SetContentView(Resource.Layout.recipe_layout);
+
+            Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
 
             int recipeId = Intent.GetIntExtra("recipe", -1);
 
