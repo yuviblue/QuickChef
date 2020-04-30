@@ -30,16 +30,16 @@ namespace QuickChef.DAL
             return db;
         }
 
-        public bool IsNotSaved(int id)
+        public static bool IsRecipeSaved(int id)
         {
             foreach (var item in Download.Get())
             {
                 if (id == item.TrueId)
                 {
-                    return false;
+                    return true;
                 }
             }
-            return true;
+            return false;
         }
     }
 }

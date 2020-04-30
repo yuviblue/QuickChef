@@ -10,7 +10,7 @@ using QuickChef.Model;
 
 namespace QuickChef
 {
-    [Activity(Label = "Recipe")]
+    [Activity(Label = "Recipe", Theme = "@style/AppTheme")]
     public class Recipe : Activity
     {
         private RecipeModel rm = null;
@@ -31,6 +31,11 @@ namespace QuickChef
             var instructions = FindViewById<TextView>(Resource.Id.tvInsrtuctions);
             var ingredients = FindViewById<TextView>(Resource.Id.tvIngridients);
             var btnDownload = FindViewById<Button>(Resource.Id.btnDownload);
+
+            if (DB.IsRecipeSaved(recipeId))
+            {
+                btnDownload.Visibility = Android.Views.ViewStates.Gone;
+            }
 
             btnDownload.Click += BtnDownload_Click;
 
