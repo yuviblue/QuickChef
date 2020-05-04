@@ -13,7 +13,7 @@ using QuickChef.DAL;
 
 namespace QuickChef
 {
-    [Activity(Label = "DownloadsActivity")]
+    [Activity(Label = "", Theme = "@style/AppTheme.NoActionBar")]
     public class DownloadsActivity : Activity
     {
         ListView lvCookbook;

@@ -41,5 +41,11 @@ namespace QuickChef.DAL
             }
             return false;
         }
+
+        public static void RemoveRecipe(int id)
+        {
+            var db = GetDbConnction();
+            db.Execute($"DELETE from Downloads WHERE TrueId=?", id);
+        }
     }
 }

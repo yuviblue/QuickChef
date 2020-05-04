@@ -11,7 +11,7 @@ using AlertDialog = Android.App.AlertDialog;
 
 namespace QuickChef
 {
-    [Activity(Label = "Matching Recipes")]
+    [Activity(Label = "", Theme = "@style/AppTheme.NoActionBar")]
     public class SearchActivity : AppCompatActivity
     {
         ListView lvRecipes;

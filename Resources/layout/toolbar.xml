@@ -8,4 +8,13 @@
     android:background="#ff9029"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light" 
-    /> 
+> 
+     <ImageView
+        android:id="@+id/img_qrorrfid"
+        android:layout_gravity="start"
+        android:layout_width="112dp"
+        android:layout_height="44dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/quickchef"
+    />
+</android.support.v7.widget.Toolbar>
