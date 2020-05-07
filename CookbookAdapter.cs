@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
@@ -17,9 +18,9 @@ namespace QuickChef
     {
 
         Context context;
-        List<Entry> results;
+        ObservableCollection<Entry> results;
 
-        public CookbookAdapter(Context context, List<Entry> results)
+        public CookbookAdapter(Context context, ObservableCollection<Entry> results)
         {
             this.context = context;
             this.results = results;

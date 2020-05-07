@@ -74,7 +74,7 @@
     <Compile Include="Model\Metric.cs" />
     <Compile Include="Model\Us.cs" />
     <Compile Include="NetworkChangeReceiver.cs" />
-    <Compile Include="Recipe.cs" />
+    <Compile Include="RecipeActivity.cs" />
     <Compile Include="RequestHandler.cs" />
     <Compile Include="SavedRecipeActivity.cs" />
     <Compile Include="SearchActivity.cs" />
@@ -189,6 +189,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\menu\heart_off_menu.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\cookbook_menu.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -27,14 +27,13 @@ namespace QuickChef
             var title = FindViewById<TextView>(Resource.Id.tvRecipeTitle);
             var image = FindViewById<ImageView>(Resource.Id.ivRecipeImage);
             var instructions = FindViewById<TextView>(Resource.Id.tvInsrtuctions);
-            var btnDownload = FindViewById<Button>(Resource.Id.btnDownload);
 
             int pos = Intent.GetIntExtra("position", 0);
             var recipe = Download.Get()[pos];
             title.Text = recipe.Title;
             image.SetImageBitmap(recipe.GetImage());
             instructions.Text = recipe.Recipe;
-            
+
         }
     }
 }

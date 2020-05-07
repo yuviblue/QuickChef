@@ -104,7 +104,7 @@ namespace QuickChef
 
         private void LvRecipes_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            Intent intent = new Intent(this, typeof(Recipe));
+            Intent intent = new Intent(this, typeof(RecipeActivity));
             intent.PutExtra("recipe", recipes[(int)e.Id].Id);
             StartActivity(intent);
         } 
