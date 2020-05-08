@@ -16,7 +16,7 @@ using Android.Views;
 
 namespace QuickChef
 {
-    [Activity(Label ="", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
+    [Activity(Label = "Quick Chef", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     { 
         private EditText etSearch;
@@ -37,9 +37,9 @@ namespace QuickChef
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
 
             progressDialog = new ProgressDialog(this);
             progressDialog.SetMessage("Loading, Please Wait");

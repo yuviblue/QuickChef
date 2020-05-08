@@ -15,7 +15,7 @@ using QuickChef.DAL;
 
 namespace QuickChef
 {
-    [Activity(Label = "", Theme = "@style/AppTheme.NoActionBar")]
+    [Activity(Label = "DownloadsActivity", Theme = "@style/AppTheme.NoActionBar")]
     public class DownloadsActivity : AppCompatActivity
     {
         private ListView lvCookbook;
@@ -25,10 +25,12 @@ namespace QuickChef
         {
             base.OnCreate(savedInstanceState);
 
-            // Create your application here
+            // Create your application here    
+            SetContentView(Resource.Layout.downloads_layout);
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
-            SetContentView(Resource.Layout.downloads_layout);
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
+
             cookbook = Download.Get();
             entryList = new ObservableCollection<Entry>();
             foreach (Download v in cookbook)

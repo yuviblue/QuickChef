@@ -12,7 +12,7 @@ using QuickChef.Model;
 
 namespace QuickChef
 {
-    [Activity(Label = "", Theme = "@style/AppTheme.NoActionBar")]
+    [Activity(Label = "RecipeActivity", Theme = "@style/AppTheme.NoActionBar")]
     public class RecipeActivity : AppCompatActivity
     {
         private RecipeModel rm = null;
@@ -20,6 +20,7 @@ namespace QuickChef
         int heart;
         bool isSaved;
         int recipeId;
+        TextView ingredients;
         private const int heartFull = Resource.Menu.heart_off_menu;
         private const int heartOutline = Resource.Menu.heart_on_menu;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -31,6 +32,7 @@ namespace QuickChef
 
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
 
             recipeId = Intent.GetIntExtra("recipe", -1);
 
@@ -39,7 +41,7 @@ namespace QuickChef
             var title = FindViewById<TextView>(Resource.Id.tvRecipeTitle);
             image = FindViewById<ImageView>(Resource.Id.ivRecipeImage);
             var instructions = FindViewById<TextView>(Resource.Id.tvInsrtuctions);
-            var ingredients = FindViewById<TextView>(Resource.Id.tvIngridients);
+            ingredients = FindViewById<TextView>(Resource.Id.tvIngridients);
 
             isSaved = DB.IsRecipeSaved(recipeId);
 
@@ -79,7 +81,7 @@ namespace QuickChef
             if (item.ItemId == Resource.Id.action_favorite)
             {
                 Bitmap bm = ((BitmapDrawable)image.Drawable).Bitmap;
-                var download = new Download(rm.id, rm.title, rm.instructions, bm);
+                var download = new Download(rm.id, rm.title, ingredients.Text, rm.instructions, bm);
                 download.Insert();
                 Toast.MakeText(this, " Recipe saved to cookbook", ToastLength.Short).Show();
                 isSaved = true;

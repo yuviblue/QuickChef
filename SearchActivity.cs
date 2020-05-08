@@ -11,7 +11,7 @@ using AlertDialog = Android.App.AlertDialog;
 
 namespace QuickChef
 {
-    [Activity(Label = "", Theme = "@style/AppTheme.NoActionBar")]
+    [Activity(Label = "SearchActivity", Theme = "@style/AppTheme.NoActionBar")]
     public class SearchActivity : AppCompatActivity
     {
         ListView lvRecipes;
@@ -30,6 +30,7 @@ namespace QuickChef
 
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
 
             try
             {

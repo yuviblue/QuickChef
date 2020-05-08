@@ -23,6 +23,7 @@ namespace QuickChef.DAL
         public int Id { get; }
         public int TrueId { get; set; }
         public string Title { get; set; }
+        public string Ingredients { get; set; }
         public string Recipe { get; set; }
         public string Image { get; set; }
         public DateTime Date { get; set; }
@@ -32,10 +33,11 @@ namespace QuickChef.DAL
                 
         }
 
-        public Download(int id, string title, string recipe, Bitmap image)
+        public Download(int id, string title, string ingredients, string recipe, Bitmap image)
         {
             TrueId = id;
             Title = title;
+            Ingredients = ingredients;
             Recipe = recipe;
             SetImage( image );
             Date = DateTime.Now;
