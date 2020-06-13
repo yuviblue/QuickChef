@@ -21,9 +21,7 @@ namespace QuickChef
             {
                 connected = true;
             }
-
-            if (conMgr.GetNetworkInfo(ConnectivityType.Mobile).GetState() != NetworkInfo.State.Connected
-                && conMgr.GetNetworkInfo(ConnectivityType.Wifi).GetState() != NetworkInfo.State.Connected)
+            else
             {
                 connected = false;
             }
@@ -47,8 +45,6 @@ namespace QuickChef
             {
                 if (networkConnected != connected && networkConnected != null)
                 {
-                    if (Looper.MyLooper() == null)
-                        Looper.Prepare();
                     string message = "Network is " + (connected ? "connected" : "disconnected");
                     Toast.MakeText(context, message, ToastLength.Long).Show();
                 }
