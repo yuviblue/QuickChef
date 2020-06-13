@@ -47,5 +47,20 @@ namespace QuickChef.DAL
             var db = GetDbConnction();
             db.Execute($"DELETE from Downloads WHERE TrueId=?", id);
         }
+
+        public static void Insert(Download download)
+        {
+            var db = GetDbConnction();
+            try
+            {
+                db.Insert(download);
+            }
+            catch
+            {
+                db.DropTable<Download>();
+                db.CreateTable<Download>();
+                db.Insert(download);
+            }
+        }
     }
 }

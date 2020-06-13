@@ -45,8 +45,7 @@ namespace QuickChef.DAL
 
         public void Insert()
         {
-            var db = DB.GetDbConnction();
-            db.Insert(this);
+            DB.Insert(this);
         }
 
         public static List<Download> Get()
