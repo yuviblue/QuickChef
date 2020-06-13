@@ -13,6 +13,7 @@ using Android.Graphics;
 using System;
 using Android.Content;
 using Android.Views;
+using Android.Net;
 
 namespace QuickChef
 {
@@ -30,10 +31,12 @@ namespace QuickChef
         private static ProgressDialog progressDialog;
         private ArrayAdapter Adapter;
         private NetworkChangeReceiver networkReceiver;
+        public static MainActivity Instance { get; private set; }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            Instance = this;
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
@@ -57,13 +60,18 @@ namespace QuickChef
             btnAdd.Click += BtnAdd_Click;
             lvIngredients.ItemClick += LvIngridients_ItemClick;
             lvIngredients.ItemLongClick += LvIngredients_ItemLongClick;
-
         }
 
         protected override void OnPostResume()
         {
             base.OnResume();
-            RegisterReceiver(networkReceiver, new IntentFilter("android:name='android.net.conn.CONNECTIVITY_CHANGE'"));
+            RegisterReceiver(networkReceiver, new IntentFilter(ConnectivityManager.ConnectivityAction));
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+            UnregisterReceiver(networkReceiver);
         }
 
         private void LvIngredients_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)

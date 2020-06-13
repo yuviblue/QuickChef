@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
+﻿using Android.Content;
 using Android.Net;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 
 namespace QuickChef
@@ -16,22 +8,52 @@ namespace QuickChef
     [BroadcastReceiver(Enabled = true, Exported = false)]
     public class NetworkChangeReceiver : BroadcastReceiver
     {
+        private bool? networkConnected = null;
+        private bool connected = false;
+
+        public NetworkChangeReceiver() { }
         public override void OnReceive(Context context, Intent intent)
         {
-            ConnectivityManager cm = (ConnectivityManager)context.GetSystemService(Context.ConnectivityService);
-            NetworkInfo activeNetwork = cm.ActiveNetworkInfo;
-            bool isConnected = (activeNetwork != null && activeNetwork.IsConnectedOrConnecting);
+            ConnectivityManager conMgr = (ConnectivityManager)context.GetSystemService(Context.ConnectivityService);
 
-            if (isConnected)
+            if (conMgr.GetNetworkInfo(ConnectivityType.Mobile).GetState() == NetworkInfo.State.Connected
+                || conMgr.GetNetworkInfo(ConnectivityType.Wifi).GetState() == NetworkInfo.State.Connected)
             {
-                Toast.MakeText(context, "Connected!", ToastLength.Short).Show();
-            }
-            else
-            {
-                Toast.MakeText(context, "No Connection!", ToastLength.Short).Show();
+                connected = true;
             }
 
-            
+            if (conMgr.GetNetworkInfo(ConnectivityType.Mobile).GetState() != NetworkInfo.State.Connected
+                && conMgr.GetNetworkInfo(ConnectivityType.Wifi).GetState() != NetworkInfo.State.Connected)
+            {
+                connected = false;
+            }
+
+            System.Timers.Timer timer = new System.Timers.Timer
+            {
+                Interval = 100,
+                Enabled = true,
+                AutoReset = false,
+            };
+            timer.Elapsed += (object sender, System.Timers.ElapsedEventArgs e) =>
+            {
+                ReportConnectionStatus(context);
+            };
+            timer.Start();
+        }
+
+        private void ReportConnectionStatus(Context context)
+        {
+            MainActivity.Instance.RunOnUiThread(() =>
+            {
+                if (networkConnected != connected && networkConnected != null)
+                {
+                    if (Looper.MyLooper() == null)
+                        Looper.Prepare();
+                    string message = "Network is " + (connected ? "connected" : "disconnected");
+                    Toast.MakeText(context, message, ToastLength.Long).Show();
+                }
+                networkConnected = connected;
+            });
         }
     }
 }
