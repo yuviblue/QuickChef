@@ -5,14 +5,13 @@ using Android.App;
 using Android.Content;
 
 using Android.OS;
-using Android.Support.V7.App;
 using Android.Widget;
 using AlertDialog = Android.App.AlertDialog;
 
 namespace QuickChef
 {
     [Activity(Label = "SearchActivity", Theme = "@style/AppTheme.NoActionBar")]
-    public class SearchActivity : AppCompatActivity
+    public class SearchActivity : ActivityBase
     {
         ListView lvRecipes;
         private const string apiKey = "158e67089b3f42e3b3d6a3cb512213b7";

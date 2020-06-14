@@ -60,6 +60,9 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivityBase.cs" />
+    <Compile Include="ByeHandler.cs" />
+    <Compile Include="ByeService.cs" />
     <Compile Include="CookbookAdapter.cs" />
     <Compile Include="DAL\DB.cs" />
     <Compile Include="DAL\Download.cs" />
@@ -87,6 +90,7 @@
     <Compile Include="Model\Entry.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />

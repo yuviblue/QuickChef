@@ -1,10 +1,8 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
-using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
 using QuickChef.DAL;
@@ -13,7 +11,7 @@ using QuickChef.Model;
 namespace QuickChef
 {
     [Activity(Label = "RecipeActivity", Theme = "@style/AppTheme.NoActionBar")]
-    public class RecipeActivity : AppCompatActivity
+    public class RecipeActivity : ActivityBase
     {
         private RecipeModel rm = null;
         ImageView image;

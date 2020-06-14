@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
 using QuickChef.DAL;
@@ -16,7 +10,7 @@ using QuickChef.DAL;
 namespace QuickChef
 {
     [Activity(Label = "DownloadsActivity", Theme = "@style/AppTheme.NoActionBar")]
-    public class DownloadsActivity : AppCompatActivity
+    public class DownloadsActivity : ActivityBase
     {
         private ListView lvCookbook;
         private List<Download> cookbook;

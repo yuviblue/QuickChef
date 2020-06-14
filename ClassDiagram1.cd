@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="QuickChef.CookbookAdapter" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAICAAAAAAAAAEAAAAAAAAQAAAAAAAgAAAABAAAAAAA=</HashCode>
+      <FileName>CookbookAdapter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickChef.CookbookAdapterViewHolder" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CookbookAdapter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickChef.DownloadsActivity">
+    <Position X="10.5" Y="0.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAEDAAAAAACABAAAAAAAAAACAAAA=</HashCode>
+      <FileName>DownloadsActivity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickChef.MainActivity" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAYAQAIAAAAAIAaAIAAAACAAhCgAoAAAYAABAhABAAI=</HashCode>
+      <FileName>MainActivity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickChef.Entry">
+    <Position X="13.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACgAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Entry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickChef.ShortRecipe" Collapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAEACAAAIAEAoAAAAAAAAAAAAAAiQ=</HashCode>
+      <FileName>Model\ShortRecipe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickChef.NetworkChangeReceiver" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAQAAAAAAAQAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>NetworkChangeReceiver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickChef.RecipeActivity" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAGAAAAIAAACAAAkCAAgAAAAAAAIAAAgCA=</HashCode>
+      <FileName>RecipeActivity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickChef.RequestHandler&lt;T&gt;" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAQAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RequestHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickChef.SavedRecipeActivity" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SavedRecipeActivity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickChef.SearchActivity">
+    <Position X="10.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAgAAAAAAAACgIAAAEEAQACAAAAAAAABAIAAAAAA=</HashCode>
+      <FileName>SearchActivity.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="recipes" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="QuickChef.SearchAdapter" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAICAAAAAAAAAEAAAAAAAAQAAAAAAAgAAAABAAAAAAA=</HashCode>
+      <FileName>SearchAdapter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickChef.SearchAdapterViewHolder" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SearchAdapter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickChef.DAL.DB" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAgAAAAAAAEAAAEAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>DAL\DB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickChef.DAL.Download" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <Members>
+      <Property Name="Recipe" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAEBAAAAAAEBAAAAAACEQAAAAABABAAAAAAAAAAA=</HashCode>
+      <FileName>DAL\Download.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Recipe" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="QuickChef.Model.AnalyzedInstruction" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\AnalyzedInstruction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickChef.Model.ExtendedIngredient" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAQAAgAAACACAAEAAAkAAEiAAAAAAAAAAAAgE=</HashCode>
+      <FileName>Model\ExtendedIngredient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickChef.Model.Length" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Length.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickChef.Model.Measures" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Model\Measures.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickChef.Model.Metric" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAgAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Model\Metric.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickChef.Model.RecipeModel" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FAEJBgAAQAEgAOAhABIAAAAAEQACCACAKExAIAACIiA=</HashCode>
+      <FileName>Model\RecipeModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickChef.Model.Step" Collapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAIEAAAAAAAAAkAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Step.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickChef.Model.Us" Collapsed="true">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAgAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Model\Us.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickChef.Model.WinePairing" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\WinePairing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ingredient" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAACAgAAACACAAAAAAEAAEiAAAAAAAAAAEAgE=</HashCode>
+      <FileName>Model\Ingredient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

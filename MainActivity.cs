@@ -1,24 +1,18 @@
 ﻿using Android.App;
 using Android.OS;
-using Android.Support.V7.App;
 using Android.Runtime;
 using Android.Widget;
-using System.Net.Http;
-using System.Threading.Tasks;
 using System.Collections.Generic;
-using static Android.Content.ClipData;
-using Newtonsoft.Json;
-using ModernHttpClient;
-using Android.Graphics;
 using System;
 using Android.Content;
 using Android.Views;
 using Android.Net;
+using Android.Support.V7.App;
 
 namespace QuickChef
 {
     [Activity(Label = "Quick Chef", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity
+    public class MainActivity : ActivityBase
     { 
         private EditText etSearch;
         private int currentIndex = -1;
@@ -167,6 +161,11 @@ namespace QuickChef
                 return true;
             }
             return true;
+        }
+
+        public override void OnBackPressed()
+        {
+            OnBackPressedOriginal();
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
