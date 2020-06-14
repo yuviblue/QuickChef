@@ -24,7 +24,7 @@
         android:id="@+id/btnConfirm"
         android:text="Confirm"
         android:textColor="#fff"
-        android:background="#ff9029"
+        android:background="@drawable/ripple_effect"
     />
 
 </LinearLayout>

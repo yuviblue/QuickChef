@@ -50,7 +50,7 @@
             android:text="What's cookin'?"
             android:textColor="#fff"
             android:id="@+id/btnSearch"
-            android:background="#ff9029"
+            android:background="@drawable/ripple_effect"
             android:layout_gravity="center"
             android:layout_weight="1"
         />
