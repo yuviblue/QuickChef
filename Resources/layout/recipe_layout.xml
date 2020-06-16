@@ -27,12 +27,16 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvRecipeTitle"
                 android:textColor="#000"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:padding="10dp"
             />
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/ivRecipeImage"
+                android:padding="10dp"
             />
 
             <TextView
@@ -40,6 +44,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvIngridients"
                 android:textColor="#000"
+                android:textSize="20sp"
+                android:background="@drawable/gray_background"
+                android:padding="10dp"
+                android:textStyle="bold"
             />
 
             <TextView
@@ -47,6 +55,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvInsrtuctions"
                 android:textColor="#000"
+                android:textSize="20sp"
+                android:padding="10dp"
+                android:textStyle="bold"
             />
         </LinearLayout>
     </ScrollView>
