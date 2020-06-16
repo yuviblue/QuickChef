@@ -1,6 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context=".MainActivity">
   <item
-      android:id="@+id/action_delete"
-      android:title="Remove from cookbook"/>
+        android:id="@+id/action_add_ingredient"
+        android:orderInCategory="300"
+        android:title="Plus"
+        android:icon="@drawable/baseline_add_circle_outline_24"
+        app:showAsAction="ifRoom">
+  </item>
+  <item
+      android:id="@+id/goto_cookbook"
+      android:orderInCategory="300"
+      android:title="My Cookbook"
+      android:icon="@drawable/baseline_menu_book_24"
+      app:showAsAction="ifRoom">
+  </item>
 </menu>

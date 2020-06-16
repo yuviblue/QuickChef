@@ -50,7 +50,7 @@ namespace QuickChef
         private void LvCookbook_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
         {
             PopupMenu menu = new PopupMenu(this, lvCookbook.GetChildAt(e.Position));
-            menu.Inflate(Resource.Menu.cookbook_menu);
+            menu.Inflate(Resource.Menu.delete_recipe_menu);
 
             menu.MenuItemClick += (s, args) => 
             {
@@ -74,7 +74,7 @@ namespace QuickChef
         {
             base.OnCreateContextMenu(menu, v, menuInfo);
             MenuInflater inflater = MenuInflater;
-            inflater.Inflate(Resource.Menu.cookbook_menu, menu);
+            inflater.Inflate(Resource.Menu.delete_recipe_menu, menu);
         }
     }
 }

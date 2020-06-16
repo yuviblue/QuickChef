@@ -71,6 +71,10 @@ namespace QuickChef
         private void LvIngredients_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
         {
             ingredientsList.Remove(ingredientsList[e.Position]);
+            if (ingredientsList.Count == 0)
+            {
+                btnSearch.Visibility = ViewStates.Invisible;
+            }
             lvIngredients.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, ingredientsList);
         }
 
@@ -85,6 +89,7 @@ namespace QuickChef
             if (string.IsNullOrEmpty(etSearch.Text))
                 return;
             ingredientsList.Add(etSearch.Text);
+            btnSearch.Visibility = ViewStates.Visible;
             lvIngredients.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, ingredientsList);
             ingredientsDialog.Cancel();
         }
@@ -147,18 +152,24 @@ namespace QuickChef
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            MenuInflater.Inflate(Resource.Menu.options_menu, menu);
+            MenuInflater.Inflate(Resource.Menu.cookbook_menu, menu);
+
             return true;
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             base.OnOptionsItemSelected(item);
-            if (item.ItemId == Resource.Id.myCookbook)
+            if (item.ItemId == Resource.Id.goto_cookbook)
             {
                 Intent intent = new Intent(this, typeof(DownloadsActivity));
                 StartActivity(intent);
                 return true;
+            }
+            if (item.ItemId == Resource.Id.action_add_ingredient)
+            {
+                AddIngridientDialog();
+                lvIngredients.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, ingredientsList);  
             }
             return true;
         }
